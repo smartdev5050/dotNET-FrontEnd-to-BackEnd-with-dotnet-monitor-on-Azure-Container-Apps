@@ -1,34 +1,93 @@
-var builder = WebApplication.CreateBuilder(args);
+using System;
+using System.Security.Principal;
+using Microsoft.Extensions.Caching.Memory;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-var summaries = new[]
+if (app.Environment.IsDevelopment())
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
+}
+
+var init_accounts = new[]
+{
+    new Account() { Index = 0, Number = "CG084548", Name = "Checking", Balance = 1232},
+    new Account() { Index = 1, Number = "SA193473", Name = "Saving 1", Balance = 10000 },
+    new Account() { Index = 2, Number = "SA204233", Name = "Holiday Saving", Balance = 2300 }
 };
 
-app.MapGet("/weatherforecast", () =>
+var memCacheAccountsKey = $"account-list";
+
+app.MapGet("/accounts", (IMemoryCache memoryCache) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    Account  [] accounts;
+
+    if (!memoryCache.TryGetValue(memCacheAccountsKey, out accounts))
+    {
+        memoryCache.Set(memCacheAccountsKey, init_accounts);
+    }
+
+    init_accounts = memoryCache.Get<Account[]>(memCacheAccountsKey);
+
+    return init_accounts;
+});
+
+app.MapPost("/account/transfer", (AccountTransfer accountTransfer, IMemoryCache memoryCache) =>
+{
+    Account[] myaccounts;
+
+    if (accountTransfer != null)
+    {
+        myaccounts = memoryCache.Get<Account[]>(memCacheAccountsKey);
+
+        lock (myaccounts[accountTransfer.FromIndex])
+        {
+            Thread.Sleep(2000);
+
+            lock (myaccounts[accountTransfer.ToIndex])
+            {
+                myaccounts[accountTransfer.FromIndex].Balance -= accountTransfer.Amount;
+                myaccounts[accountTransfer.ToIndex].Balance += accountTransfer.Amount;
+            }
+        }
+
+        memoryCache.Set(memCacheAccountsKey, myaccounts);
+    }
+
+    return Results.Ok();
+});
+
+app.MapGet("/account/history/{index}", (string index) =>
+{
+
+    return Results.Ok();
 });
 
 app.Run();
 
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
+internal record Account()
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public int Index { get; set; }
+    public string Number { get; set; }
+    public string Name { get; set; } 
+    public decimal Balance { get; set; }
+}
+
+internal record AccountTransfer
+{
+    public int FromIndex { get; set; }
+
+    public int ToIndex { get; set; }
+
+    public decimal Amount { get; set; }
 }
