@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.32710.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.WebUI", "Banking.WebUI\Banking.WebUI.csproj", "{E0966C1C-284B-40AF-B402-AB200361A86D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.AccountApi", "Banking.AccountApi\Banking.AccountApi.csproj", "{223C02EC-7CEB-4335-8040-9E6E4052D00A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E0966C1C-284B-40AF-B402-AB200361A86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0966C1C-284B-40AF-B402-AB200361A86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0966C1C-284B-40AF-B402-AB200361A86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{223C02EC-7CEB-4335-8040-9E6E4052D00A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{223C02EC-7CEB-4335-8040-9E6E4052D00A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{223C02EC-7CEB-4335-8040-9E6E4052D00A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{223C02EC-7CEB-4335-8040-9E6E4052D00A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

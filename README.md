@@ -1,4 +1,4 @@
-# Project Name
+# ASP.NET Core APIs configured with dotnet-monitor on Azure Container Apps
 
 This repository contains a simple scenario built to demonstrate how Azure Container Apps can be configured with a diagnostics tools like [dotnet-monitor](https://github.com/dotnet/dotnet-monitor).
 
