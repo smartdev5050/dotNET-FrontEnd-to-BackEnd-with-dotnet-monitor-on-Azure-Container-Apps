@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32710.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.WebUI", "Banking.WebUI\Banking.WebUI.csproj", "{E0966C1C-284B-40AF-B402-AB200361A86D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0966C1C-284B-40AF-B402-AB200361A86D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0966C1C-284B-40AF-B402-AB200361A86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0966C1C-284B-40AF-B402-AB200361A86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0966C1C-284B-40AF-B402-AB200361A86D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {393CECEB-C173-463C-B141-4334E30FACF5}
+	EndGlobalSection
+EndGlobal

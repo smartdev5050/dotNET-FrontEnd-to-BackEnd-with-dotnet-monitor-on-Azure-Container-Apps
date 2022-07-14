@@ -1,57 +1,22 @@
 # Project Name
 
-(short, 1-3 sentenced, description of the project)
+This repository contains a simple scenario built to demonstrate how Azure Container Apps can be configured with a diagnostics tools like [dotnet-monitor](https://github.com/dotnet/dotnet-monitor).
 
 ## Features
 
-This project framework provides the following features:
+This exercise will introduce you to a variety of concepts, with links to supporting documentation throughout the tutorial. 
 
-* Feature 1
-* Feature 2
-* ...
+* [Azure Container Apps](https://docs.microsoft.com/azure/container-apps/overview)
+* [dotnet-monitor](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-monitor)
+* [GitHub Actions](https://github.com/features/actions)
+* [Azure Container Registry](https://docs.microsoft.com/azure/container-registry/)
+* [Azure Bicep](https://docs.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=**bicep**)
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
+You'll need an Azure subscription and a very small set of tools and skills to get started:
 
-(ideally very short, if any)
+1. An Azure subscription. Sign up [for free](https://azure.microsoft.com/free/).
+2. A GitHub account, with access to GitHub Actions.
+3. Either the [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) installed locally, or, access to [GitHub Codespaces](https://github.com/features/codespaces), which would enable you to do develop in your browser.
 
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
