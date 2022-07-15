@@ -1,8 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Banking.WebUI.Services;
+@model List<Account>
+
+@{
+    ViewData["Title"] = "Transfer Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Accounts Transfer Page</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Account Name</th>
+                <th scope="col">Account Number</th>
+                <th scope="col">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Model)
+            {
+                <tr>
+                    <td>@account.Name</td>
+                    <td>@account.Number</td>
+                    <td>@account.Balance</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

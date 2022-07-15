@@ -1,4 +1,5 @@
 ﻿using Banking.WebUI.Models;
+using Banking.WebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,21 +7,20 @@ namespace Banking.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAccountBackendClient _accountBackendClient;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IAccountBackendClient accountBackendClient, ILogger<HomeController> logger)
         {
+            _accountBackendClient = accountBackendClient;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var accounts = _accountBackendClient.GetAccounts().Result;
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(accounts);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
