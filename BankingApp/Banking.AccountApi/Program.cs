@@ -37,6 +37,9 @@ app.MapGet("/accounts", (IMemoryCache memoryCache) =>
         memoryCache.Set(memCacheAccountsKey, init_accounts);
     }
 
+    var random = new Random();
+    Thread.Sleep(random.Next(3) * 1000);
+
     init_accounts = memoryCache.Get<Account[]>(memCacheAccountsKey);
 
     return init_accounts;
@@ -63,12 +66,6 @@ app.MapPost("/account/transfer", (AccountTransfer accountTransfer, IMemoryCache 
 
         memoryCache.Set(memCacheAccountsKey, myaccounts);
     }
-
-    return Results.Ok();
-});
-
-app.MapGet("/account/history/{index}", (string index) =>
-{
 
     return Results.Ok();
 });

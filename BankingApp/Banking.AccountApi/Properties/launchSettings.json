@@ -1,28 +1,12 @@
 ﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:25268",
-      "sslPort": 44337
-    }
-  },
   "profiles": {
     "Banking.AccountApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "",
-      "applicationUrl": "https://localhost:7112;http://localhost:5112",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "",
+      "applicationUrl": "http://localhost:4998",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
