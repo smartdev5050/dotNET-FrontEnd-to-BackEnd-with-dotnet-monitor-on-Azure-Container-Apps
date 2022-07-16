@@ -11,7 +11,7 @@ namespace Banking.WebUI.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public Task<bool> AccountTransfer(AccountTransfer accountTransfer)
+        public Task<HttpResponseMessage> AccountTransfer(AccountTransfer accountTransfer)
         {
             var client = _httpClientFactory.CreateClient("Accounts");
 
