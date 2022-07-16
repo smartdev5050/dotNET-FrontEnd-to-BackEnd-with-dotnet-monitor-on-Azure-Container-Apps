@@ -1,11 +1,15 @@
 ﻿@using Banking.WebUI.Services;
-@model List<Account>
+@using System.Globalization
+@inject IAccountBackendClient accountBackendClient;
+@model AccountTransfer;
 
 @{
     ViewData["Title"] = "Transfer Page";
+
+    var accts = accountBackendClient.GetAccounts().Result;
 }
 
-<div class="text-center">
+<div>
     <h1 class="display-4">Accounts Transfer Page</h1>
 
     <table class="table">
@@ -17,14 +21,48 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var account in Model)
+            @foreach (var account in accts)
             {
                 <tr>
                     <td>@account.Name</td>
                     <td>@account.Number</td>
-                    <td>@account.Balance</td>
+                    <td>@account.Balance.ToString("C", new CultureInfo("en-US"))</td>
                 </tr>
             }
         </tbody>
     </table>
+
+    @using (Html.BeginForm("Transfer", "Home", FormMethod.Post))
+    {
+        List<SelectListItem> items = accts.ConvertAll(a =>
+        {
+            return new SelectListItem()
+                {
+                    Text = a.Name,
+                    Value = a.Index.ToString(),
+                    Selected = false
+                };
+        });
+        <div class="form-group">
+            @Html.DropDownList("FromIndex", items)
+            @Html.DropDownList("ToIndex", items)
+        </div>
+
+        <div class="form-group">
+            @Html.TextBox("Amount","", new { style="" })
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <input type="submit" name="submitAction" value="Save" class="btn btn-default btn-primary btn-lg" />
+        </div>
+
+    }
+
 </div>
+
+
+
+
+

@@ -1,4 +1,6 @@
-﻿namespace Banking.WebUI.Services
+﻿using System.Text.Json.Serialization;
+
+namespace Banking.WebUI.Services
 {
     public class Account
     {
@@ -10,10 +12,13 @@
 
     public class AccountTransfer
     {
+        [JsonPropertyName("fromIndex")]
         public int FromIndex { get; set; }
 
+        [JsonPropertyName("toIndex")]
         public int ToIndex { get; set; }
 
+        [JsonPropertyName("amount")]
         public decimal Amount { get; set; }
     }
 }

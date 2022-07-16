@@ -18,9 +18,14 @@ namespace Banking.WebUI.Controllers
 
         public IActionResult Index()
         {
-            var accounts = _accountBackendClient.GetAccounts().Result;
+            return View();
+        }
 
-            return View(accounts);
+        public IActionResult Transfer(AccountTransfer accountTransfer)
+        {            
+            var resp = _accountBackendClient.AccountTransfer(accountTransfer).Result;
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

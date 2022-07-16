@@ -7,7 +7,7 @@ namespace Banking.WebUI.Services
         [Get("/accounts")]
         Task<List<Account>> GetAccounts();
 
-        [Get("/account/transfer")]
-        Task<bool> AccountTransfer(AccountTransfer accountTransfer);
+        [Post("/account/transfer")]
+        Task<HttpResponseMessage> AccountTransfer([Body] AccountTransfer accountTransfer);
     }
 }
