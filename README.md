@@ -23,7 +23,7 @@ You'll need an Azure subscription and a very small set of tools and skills to ge
 
 ## Topology diagram
 
-The resultant application is an Azure Container Environment-hosted set of containers - the `Banking.Account` API, `Banking.WebUI` ASP.NET Core front-end.
+The resultant application is an Azure Container Environment-hosted set of containers - the `banking-account` API, `banking.webui` ASP.NET Core front-end.
 
 ![Application topology](docs/media/topology.png)
 
@@ -102,15 +102,12 @@ With the projects deployed to Azure, you can now test the app to make sure it wo
 ## Try the app in Azure
 
 The `deploy` CI/CD process creates a series of resources in your Azure subscription. These are used primarily for hosting the project code, but there's also a few additional resources that aid with monitoring and observing how the app is running in the deployed environment. 
-| Resource  | Resource Type                                                | Purpose                                                      |
-| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| storeai   | Application Insights                                         | This provides telemetry and diagnostic information for when I want to monitor how the app is performing or for when things need troubleshooting. |
-| store     | An Azure Container App that houses the code for the front end. | The store app is the store's frontend app, running a Blazor Server project that reaches out to the backend APIs |
-| products  | An Azure Container App that houses the code for a minimal API. | This API is a Swagger UI-enabled API that hands back product names and IDs to callers. |
-| inventory | An Azure Container App that houses the code for a minimal API. | This API is a Swagger UI-enabled API that hands back quantities for product IDs. A client would need to call the `products` API first to get the product ID list, then use those product IDs as parameters to the `inventory` API to get the quantity of any particular item in inventory. |
-| storeenv  | An Azure Container Apps Environment                          | This environment serves as the networking meta-container for all of the instances of all of the container apps comprising the app. |
-| storeacr  | An Azure Container Registry                                  | This is the container registry into which the CI/CD process publishes my application containers when I commit code to the `deploy` branch. From this registry, the containers are pulled and loaded into Azure Container Apps. |
-| storelogs | Log Analytics Workspace                                      | This is where I can perform custom [Kusto](https://docs.microsoft.com/azure/data-explorer/kusto/query/) queries against the application telemetry, and time-sliced views of how the app is performing and scaling over time in the environment. |
+| Resource        | Resource Type                                                  | Purpose                                                      |
+| --------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
+| banking-webui   | An Azure Container App that houses the code for a minimal API. | The store app is the store's frontend app, running an ASP.NET Core project that reaches out to the backend API. |
+| banking-account | An Azure Container App that houses the code for the front end. | This API is a Swagger UI-enabled API that gets a list of accounts and transfers money between accounts. |
+| storeacr        | An Azure Container Registry                                    | This is the container registry into which the CI/CD process publishes my application containers when I commit code to the `deploy` branch. From this registry, the containers are pulled and loaded into Azure Container Apps. |
+
 
 The resources are shown here in the Azure portal:
 
